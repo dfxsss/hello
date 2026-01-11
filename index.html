@@ -15,12 +15,12 @@
         :root {
             --bg-color: #1e1e1e;
             --text-color: #C3CCDB;
-            --accent-color: #BB9AF7;
-            --hover-color: #404040;
-            --border-color: #1a1a1a;
+            --accent-color: #7AA2F7;
+            --hover-color: #2d2d2d;
+            --border-color: #2d2d2d;
             --secondary-bg: #181818;
             --secondary-text: #7A7A7A;
-            --pressed-color: #BB9AF7;
+            --pressed-color: #7AA2F7;
             --line-number: #7A7A7A;
             --line-number-active: #BBBBBB;
             --url: url("");
@@ -55,13 +55,13 @@
         }
 
         #tab-bar {
-            background: transparent !important;
+            background: #1f1f1f !important;
             height: 40px;
             display: flex;
             align-items: center;
             padding: 0 6px 0 0;
             gap: 3px;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid #2d2d2d;
             overflow-x: auto;
             overflow-y: hidden;
             white-space: nowrap;
@@ -91,13 +91,14 @@
             padding: 0 8px 0 12px;
             color: var(--secondary-text);
             cursor: pointer;
-            background-color: var(--bg-color);
-            border-radius: 12px;
+            background-color: #282828;
+            border: 1px solid #2d2d2d;
+            border-radius: 6px;
             margin-right: 2px;
             min-width: 80px;
             max-width: 160px;
             user-select: none;
-            font-size: 14px;
+            font-size: 13px;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -112,14 +113,13 @@
         }
 
         .tab.active {
-            background: var(--hover-color);
+            background: #2d2d2d;
             color: var(--text-color);
             z-index: 1;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .tab:hover {
-            background-color: var(--hover-color);
+            background-color: #2d2d2d;
             color: var(--text-color);
         }
 
@@ -382,19 +382,19 @@
                     { token: 'variable.other.constant', foreground: 'FF9E64' },
                     { token: 'variable.property', foreground: '7DCFFF' },
                     { token: 'variable.object.property', foreground: '73DACA' },
-                    { token: 'keyword', foreground: 'BB9AF7' },
-                    { token: 'keyword.local', foreground: '997BD6', fontStyle: 'italic' },
+                    { token: 'keyword', foreground: '7AA2F7' },
+                    { token: 'keyword.local', foreground: '7AA2F7', fontStyle: 'italic' },
                     { token: 'keyword.operator', foreground: '89DDFF' },
                     { token: 'keyword.operator.type.annotation', foreground: '9ABDF5' },
                     { token: 'keyword.operator.typedef.annotation', foreground: '89DDFF' },
-                    { token: 'keyword.control.export', foreground: '997BD6', fontStyle: 'italic' },
+                    { token: 'keyword.control.export', foreground: '7AA2F7', fontStyle: 'italic' },
                     { token: 'operator', foreground: '89DDFF' },
-                    { token: 'operator.type', foreground: 'BB9AF7' },
-                    { token: 'operator.special', foreground: 'BB9AF7' },
+                    { token: 'operator.type', foreground: '7AA2F7' },
+                    { token: 'operator.special', foreground: '7AA2F7' },
                     { token: 'entity.name.type.alias', foreground: '5ab6d6' },
                     { token: 'entity.name.function', foreground: '7AA2F7' },
                     { token: 'global', foreground: '7AA2F7' },
-                    { token: 'storage.type', foreground: 'BB9AF7' },
+                    { token: 'storage.type', foreground: '7AA2F7' },
                     { token: 'comment', foreground: '666666', fontStyle: 'italic' },
                     { token: 'comment.highlight.title', foreground: '89DDFF', fontStyle: 'italic' },
                     { token: 'comment.highlight.name', foreground: '89DDFF', fontStyle: 'italic' },
@@ -429,18 +429,18 @@
                     'editorLineNumber.foreground': '#7A7A7A',
                     'editorLineNumber.activeForeground': '#BBBBBB',
                     'editorIndentGuide.background': '#1a1a1a',
-                    'editorIndentGuide.activeBackground': '#BB9AF7',
+                    'editorIndentGuide.activeBackground': '#7AA2F7',
                     'editorSuggestWidget.background': '#181818',
                     'editorSuggestWidget.border': '#1a1a1a',
                     'editorSuggestWidget.foreground': '#D5D5D5',
                     'editorSuggestWidget.selectedBackground': '#404040',
                     'editorSuggestWidget.highlightForeground': '#18A0FB',
                     'editor.selectionBackground': '#264f78',
-                    'editor.selectionHighlightBackground': '#BB9AF7',
+                    'editor.selectionHighlightBackground': '#7AA2F780',
                     'scrollbarSlider.background': '#181818',
                     'scrollbarSlider.hoverBackground': '#404040',
-                    'scrollbarSlider.activeBackground': '#BB9AF7',
-                    'editorCursor.foreground': '#BB9AF7',
+                    'scrollbarSlider.activeBackground': '#7AA2F7',
+                    'editorCursor.foreground': '#7AA2F7',
                     'textCodeBlock.background': '#1B1B1B'
                 }
             });
@@ -571,7 +571,7 @@
                         if (nameElement.tagName === 'INPUT') return;
                         const inputElement = document.createElement('input');
                         inputElement.value = this.name;
-                        inputElement.style.cssText = 'width:80px;background:transparent;border:none;color:var(--text-color);outline:none;font-family:"JetBrains Mono",Consolas,"Courier New",monospace;font-size:14px;padding:0;box-sizing:border-box;';
+                        inputElement.style.cssText = 'width:80px;background:transparent;border:none;color:var(--text-color);outline:none;font-family:"JetBrains Mono",Consolas,"Courier New",monospace;font-size:13px;padding:0;box-sizing:border-box;';
                         nameElement.replaceWith(inputElement);
                         inputElement.focus();
                         inputElement.select();
@@ -778,8 +778,8 @@
                     minimap: { enabled: false },
                     showFoldingControls: 'always',
                     smoothScrolling: true,
-                    cursorBlinking: 'smooth',
-                    cursorSmoothCaretAnimation: true,
+                    cursorBlinking: 'solid',
+                    cursorSmoothCaretAnimation: 'off',
                     foldingHighlight: false,
                     fontLigatures: true,
                     formatOnPaste: true,
