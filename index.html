@@ -89,7 +89,7 @@
             display: flex;
             align-items: center;
             padding: 0 8px 0 12px;
-            color: var(--secondary-text);
+            color: #6A6A6A;
             cursor: pointer;
             background-color: #282828;
             border: 1px solid #2d2d2d;
@@ -114,18 +114,28 @@
 
         .tab.active {
             background: #2d2d2d;
-            color: var(--text-color);
+            color: #9D9D9D;
             z-index: 1;
         }
 
         .tab:hover {
             background-color: #2d2d2d;
-            color: var(--text-color);
+            color: #9D9D9D;
+        }
+
+        .tab-icon {
+            width: 14px;
+            height: 14px;
+            margin-right: 6px;
+            flex-shrink: 0;
+            opacity: 0.7;
         }
 
         .tab-name {
             overflow: hidden;
             text-overflow: ellipsis;
+            display: flex;
+            align-items: center;
         }
 
         .tab-close {
@@ -440,7 +450,7 @@
                     'scrollbarSlider.background': '#181818',
                     'scrollbarSlider.hoverBackground': '#404040',
                     'scrollbarSlider.activeBackground': '#7AA2F7',
-                    'editorCursor.foreground': '#7AA2F7',
+                    'editorCursor.foreground': '#6A6A6A',
                     'textCodeBlock.background': '#1B1B1B'
                 }
             });
@@ -487,9 +497,13 @@
         }
 
         class Tab {
-            constructor(content = `print("Hello, World!")`, name = `Script ${scriptCounter++}`, id = `tab-${Date.now()}`) {
+            constructor(content = `print("Hello, World!")`, name = null, id = `tab-${Date.now()}`) {
                 this.id = id;
-                this.name = name;
+                if (name === null) {
+                    this.name = `Untitled Tab ${scriptCounter++}`;
+                } else {
+                    this.name = name;
+                }
                 this.content = content;
                 tabCount++;
                 this.number = tabCount;
@@ -499,7 +513,15 @@
             createTabElement() {
                 const tabElement = document.createElement('div');
                 tabElement.className = 'tab tab-enter-animate tab-slide-right';
-                tabElement.innerHTML = `<span class="tab-name">${this.name}</span><span class="tab-close"></span>`;
+                tabElement.innerHTML = `
+                    <span class="tab-name">
+                        <svg class="tab-icon" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M9.5 1.1l3.4 3.5.1.4v2.4zm-3 0v5.5h5v6.1h-6.6V1.1zm0 0H3.7C3 1.1 2.5 1.6 2.5 2.2v11.5c0 .7.5 1.2 1.2 1.2h8.5c.7 0 1.2-.5 1.2-1.2V7.1L9.5 1.1z"/>
+                        </svg>
+                        <span class="tab-text">${this.name}</span>
+                    </span>
+                    <span class="tab-close"></span>
+                `;
                 setTimeout(() => {
                     tabElement.classList.remove('tab-enter-animate', 'tab-slide-right');
                 }, 300);
@@ -567,21 +589,21 @@
                 const startRenameProcess = () => {
                     if (renameTimeout) clearTimeout(renameTimeout);
                     renameTimeout = setTimeout(() => {
-                        const nameElement = tabElement.querySelector('.tab-name');
-                        if (nameElement.tagName === 'INPUT') return;
+                        const textElement = tabElement.querySelector('.tab-text');
+                        if (!textElement || textElement.tagName === 'INPUT') return;
                         const inputElement = document.createElement('input');
                         inputElement.value = this.name;
-                        inputElement.style.cssText = 'width:80px;background:transparent;border:none;color:var(--text-color);outline:none;font-family:"JetBrains Mono",Consolas,"Courier New",monospace;font-size:13px;padding:0;box-sizing:border-box;';
-                        nameElement.replaceWith(inputElement);
+                        inputElement.style.cssText = 'width:80px;background:transparent;border:none;color:#9D9D9D;outline:none;font-family:"JetBrains Mono",Consolas,"Courier New",monospace;font-size:13px;padding:0;box-sizing:border-box;';
+                        textElement.replaceWith(inputElement);
                         inputElement.focus();
                         inputElement.select();
 
                         const finishRenaming = () => {
-                            this.name = inputElement.value || 'Untitled';
-                            const newNameElement = document.createElement('span');
-                            newNameElement.className = 'tab-name';
-                            newNameElement.textContent = this.name;
-                            inputElement.replaceWith(newNameElement);
+                            this.name = inputElement.value || 'Untitled Tab';
+                            const newTextElement = document.createElement('span');
+                            newTextElement.className = 'tab-text';
+                            newTextElement.textContent = this.name;
+                            inputElement.replaceWith(newTextElement);
                             tabElement.style.cssText = '';
                             attachEventListeners();
                             saveTabsToLocalStorage();
@@ -778,8 +800,8 @@
                     minimap: { enabled: false },
                     showFoldingControls: 'always',
                     smoothScrolling: true,
-                    cursorBlinking: 'solid',
-                    cursorSmoothCaretAnimation: 'off',
+                    cursorBlinking: 'smooth',
+                    cursorSmoothCaretAnimation: 'on',
                     foldingHighlight: false,
                     fontLigatures: true,
                     formatOnPaste: true,
