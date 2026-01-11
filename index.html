@@ -13,15 +13,15 @@
         }
 
         :root {
-            --bg-color: #1e1e1e;
+            --bg-color: #1a1a1a;
             --text-color: #C3CCDB;
             --accent-color: #7AA2F7;
-            --hover-color: #2d2d2d;
-            --border-color: #2d2d2d;
-            --secondary-bg: #181818;
-            --secondary-text: #7A7A7A;
+            --hover-color: #252525;
+            --border-color: #2a2a2a;
+            --secondary-bg: #0f0f0f;
+            --secondary-text: #6A6A6A;
             --pressed-color: #7AA2F7;
-            --line-number: #7A7A7A;
+            --line-number: #6A6A6A;
             --line-number-active: #BBBBBB;
             --url: url("");
         }
@@ -43,7 +43,6 @@
             flex-direction: column;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         #main-container {
@@ -55,22 +54,20 @@
         }
 
         #tab-bar {
-            background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 50%, #252525 100%) !important;
-            height: 40px;
+            background: linear-gradient(135deg, #1f1f1f 0%, #1a1a1a 50%, #1d1d1d 100%) !important;
+            height: 42px;
             display: flex;
             align-items: center;
-            padding: 0 6px 0 0;
-            gap: 3px;
-            border-bottom: 1px solid #2d2d2d;
+            padding: 0 8px;
+            gap: 4px;
+            border-bottom: 1px solid var(--border-color);
             overflow-x: auto;
             overflow-y: hidden;
             white-space: nowrap;
-            transition: border-color 0.3s ease;
         }
 
         #tab-bar::-webkit-scrollbar {
-            height: 5px;
-            margin-bottom: 1px;
+            height: 6px;
         }
 
         #tab-bar::-webkit-scrollbar-track {
@@ -79,62 +76,58 @@
         }
 
         #tab-bar::-webkit-scrollbar-thumb {
-            background: var(--secondary-text);
+            background: #3a3a3a;
             border-radius: 3px;
             min-width: 24px;
         }
 
         .tab {
-            height: 32px;
+            height: 34px;
             display: flex;
             align-items: center;
-            padding: 0 8px 0 12px;
+            padding: 0 10px 0 14px;
             color: #6A6A6A;
             cursor: pointer;
-            background: linear-gradient(180deg, #2a2a2a 0%, #1f1f1f 100%);
-            border: 1px solid #3C3C3C;
-            border-radius: 6px;
-            margin-right: 2px;
-            min-width: 80px;
-            max-width: 160px;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 7px;
+            margin-right: 3px;
+            min-width: 120px;
+            max-width: 200px;
             user-select: none;
             font-size: 13px;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
             justify-content: space-between;
-            transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
             font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace;
-            will-change: transform, opacity;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            font-weight: 500;
         }
 
         .tab:first-child {
-            margin-left: 10px;
+            margin-left: 6px;
         }
 
         .tab.active {
-            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            background: linear-gradient(180deg, #2a2a2a 0%, #222222 100%);
             color: #E0E0E0;
-            border-color: #4a4a4a;
-            z-index: 1;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border-color: #3a3a3a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
 
-        .tab:hover {
-            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
-            color: #E0E0E0;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        .tab:hover:not(.active) {
+            background: linear-gradient(180deg, #252525 0%, #1f1f1f 100%);
+            color: #B0B0B0;
+            border-color: #2a2a2a;
         }
 
         .tab-icon {
-            width: 14px;
-            height: 14px;
-            margin-right: 6px;
+            width: 15px;
+            height: 15px;
+            margin-right: 8px;
             flex-shrink: 0;
-            opacity: 0.7;
+            opacity: 0.6;
             transition: opacity 0.2s ease;
         }
 
@@ -149,37 +142,35 @@
             display: flex;
             align-items: center;
             font-weight: 500;
+            flex: 1;
         }
 
         .tab-close {
             opacity: 0;
-            margin-left: 8px;
-            margin-bottom: 2px;
-            width: 16px;
-            height: 16px;
+            margin-left: 10px;
+            width: 18px;
+            height: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
+            border-radius: 4px;
             transition: all 0.2s ease;
-            color: #7A7A7A;
-            font-size: 16px;
+            color: #6A6A6A;
+            font-size: 18px;
             position: relative;
             flex-shrink: 0;
-            will-change: transform, opacity;
             font-weight: 300;
         }
 
         .tab:hover .tab-close,
         .tab.active .tab-close {
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
         .tab-close:hover {
             opacity: 1 !important;
             background: rgba(255, 255, 255, 0.1);
             color: #E0E0E0;
-            transform: scale(1.1);
         }
 
         .tab-close::before {
@@ -192,30 +183,27 @@
         }
 
         #new-tab-btn {
-            background: linear-gradient(180deg, #2a2a2a 0%, #1f1f1f 100%);
-            width: 28px;
-            height: 28px;
+            background: transparent;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #7A7A7A;
+            color: #6A6A6A;
             cursor: pointer;
             transition: all 0.2s ease;
-            font-size: 20px;
-            border-radius: 6px;
-            border: 1px solid #3C3C3C;
-            margin-bottom: 2px;
-            margin-left: 4px;
+            font-size: 22px;
+            border-radius: 7px;
+            border: 1px solid transparent;
             font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace;
             font-weight: 300;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            margin-left: 2px;
         }
 
         #new-tab-btn:hover {
-            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
-            color: #E0E0E0;
-            transform: scale(1.05);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(180deg, #252525 0%, #1f1f1f 100%);
+            color: #B0B0B0;
+            border-color: #2a2a2a;
         }
 
         #new-tab-btn:active {
@@ -223,31 +211,30 @@
         }
 
         .context-menu {
-            background: linear-gradient(135deg, #1a1a1a 0%, #181818 100%);
-            border: 1px solid #3C3C3C;
+            background: linear-gradient(135deg, #1a1a1a 0%, #151515 100%);
+            border: 1px solid #3a3a3a;
             border-radius: 8px;
             padding: 6px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
             z-index: 1000;
-            min-width: 140px;
+            min-width: 160px;
             animation: fadeIn 0.15s ease-out forwards;
         }
 
         .menu-item {
-            padding: 10px 14px;
+            padding: 11px 16px;
             color: #C3CCDB;
             cursor: pointer;
             border-radius: 6px;
             font-size: 13px;
             font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
             font-weight: 500;
         }
 
         .menu-item:hover {
-            background: linear-gradient(135deg, #2a2a2a 0%, #252525 100%);
+            background: linear-gradient(135deg, #252525 0%, #1f1f1f 100%);
             color: #E0E0E0;
-            transform: translateX(2px);
         }
 
         @keyframes fadeIn {
@@ -272,30 +259,6 @@
             }
         }
 
-        @keyframes tabSlideRight {
-            from {
-                transform: translateX(-20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .tab-fade-out {
-            animation: fadeOut 0.15s ease-out forwards;
-            pointer-events: none;
-        }
-
-        .tab-slide-right {
-            animation: tabSlideRight 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-
-        .tab-enter-animate {
-            animation: tabEnter 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-
         @keyframes tabEnter {
             0% {
                 transform: scale(0.95);
@@ -307,9 +270,18 @@
             }
         }
 
+        .tab-fade-out {
+            animation: fadeOut 0.15s ease-out forwards;
+            pointer-events: none;
+        }
+
+        .tab-enter-animate {
+            animation: tabEnter 0.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
         #container {
             width: 100%;
-            height: calc(100vh - 40px);
+            height: calc(100vh - 42px);
             background: transparent !important;
         }
 
@@ -434,15 +406,17 @@
                 rules: [
                     { token: '', foreground: 'C3CCDB' },
                     { token: 'keyword', foreground: '7AA2F7' },
-                    { token: 'comment', foreground: '666666', fontStyle: 'italic' },
+                    { token: 'comment', foreground: '555555', fontStyle: 'italic' },
                     { token: 'string', foreground: '9ECE6A' },
                     { token: 'number', foreground: 'FF9E64' }
                 ],
                 colors: {
-                    'editor.background': '#1e1e1e',
+                    'editor.background': '#1a1a1a',
                     'editor.foreground': '#C3CCDB',
-                    'editorLineNumber.foreground': '#7A7A7A',
-                    'editorCursor.foreground': '#6A6A6A'
+                    'editorLineNumber.foreground': '#6A6A6A',
+                    'editorCursor.foreground': '#7AA2F7',
+                    'editor.lineHighlightBackground': '#1f1f1f',
+                    'editorLineNumber.activeForeground': '#BBBBBB'
                 }
             });
             if (editor) monaco.editor.setTheme('PDark');
@@ -464,7 +438,7 @@
         class Tab {
             constructor(content = 'print("Hello, World!")', name = null, id = `tab-${Date.now()}`) {
                 this.id = id;
-                this.name = name || `Untitled Tab ${scriptCounter++}`;
+                this.name = name || `Script ${scriptCounter++}`;
                 this.content = content;
                 tabCount++;
                 this.element = this.createTabElement();
@@ -473,8 +447,8 @@
             createTabElement() {
                 const el = document.createElement('div');
                 el.className = 'tab tab-enter-animate';
-                el.innerHTML = `<span class="tab-name"><svg class="tab-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M9.5 1.1l3.4 3.5.1.4v2.4zm-3 0v5.5h5v6.1h-6.6V1.1z"/></svg><span class="tab-text">${this.name}</span></span><span class="tab-close"></span>`;
-                setTimeout(() => el.classList.remove('tab-enter-animate'), 300);
+                el.innerHTML = `<span class="tab-name"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14 2 14 8 20 8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="tab-text">${this.name}</span></span><span class="tab-close"></span>`;
+                setTimeout(() => el.classList.remove('tab-enter-animate'), 250);
 
                 el.addEventListener('click', e => !e.target.classList.contains('tab-close') && activateTab(this));
                 el.querySelector('.tab-close').addEventListener('click', e => {
@@ -502,12 +476,12 @@
                 if (!txt || txt.tagName === 'INPUT') return;
                 const inp = document.createElement('input');
                 inp.value = this.name;
-                inp.style.cssText = 'width:80px;background:transparent;border:none;color:#E0E0E0;outline:none;font:inherit;';
+                inp.style.cssText = 'width:100px;background:transparent;border:none;color:#E0E0E0;outline:none;font:inherit;';
                 txt.replaceWith(inp);
                 inp.focus();
                 inp.select();
                 const done = () => {
-                    this.name = inp.value || 'Untitled Tab';
+                    this.name = inp.value || 'Untitled';
                     const newTxt = document.createElement('span');
                     newTxt.className = 'tab-text';
                     newTxt.textContent = this.name;
@@ -530,7 +504,7 @@
         }
 
         function closeTab(tab) {
-            if (tabs.length <= 1) return showToast('Cannot close last tab!', 'error');
+            if (tabs.length <= 1) return showToast('Cannot close last tab', 'error');
             tab.element.classList.add('tab-fade-out');
             setTimeout(() => {
                 const idx = tabs.indexOf(tab);
@@ -605,7 +579,6 @@
                         const suggestions = [
                             { label: 'print', kind: monaco.languages.CompletionItemKind.Function, insertText: 'print(${1})', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: 'Outputs a message to the console' },
                             { label: 'printidentity', kind: monaco.languages.CompletionItemKind.Function, insertText: 'printidentity(${1})', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: 'Prints identity information' },
-                            { label: 'printidentify', kind: monaco.languages.CompletionItemKind.Function, insertText: 'printidentify(${1})', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: 'Identifies and prints details' },
                             { label: 'executor', kind: monaco.languages.CompletionItemKind.Function, insertText: 'executor(${1})', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: 'Executes a command or script' },
                             { label: 'local', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'local ${1}', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: 'Declares a local variable' },
                             { label: 'function', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'function ${1}()\n\t${2}\nend', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: 'Defines a function' },
@@ -616,7 +589,6 @@
                             { label: 'while', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'while ${1} do\n\t${2}\nend', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: 'Loop while condition is true' },
                             { label: 'return', kind: monaco.languages.CompletionItemKind.Keyword, insertText: 'return ${1}', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: 'Returns a value' },
                             { label: 'assert', kind: monaco.languages.CompletionItemKind.Function, insertText: 'assert(${1})', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: 'Asserts a condition' },
-                            { label: 'dofile', kind: monaco.languages.CompletionItemKind.Function, insertText: 'dofile(${1})', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: 'Executes a file' },
                             { label: 'getmetatable', kind: monaco.languages.CompletionItemKind.Function, insertText: 'getmetatable(${1})', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: 'Gets the metatable of an object' },
                             { label: 'pairs', kind: monaco.languages.CompletionItemKind.Function, insertText: 'pairs(${1})', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: 'Iterates over table key-value pairs' },
                             { label: 'ipairs', kind: monaco.languages.CompletionItemKind.Function, insertText: 'ipairs(${1})', insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: 'Iterates over table indices' },
@@ -663,11 +635,13 @@
                         comments: false,
                         strings: true
                     },
-                    padding: { top: 6, left: 0 },
+                    padding: { top: 8, left: 0 },
                     lineNumbers: 'on',
                     lineNumbersMinChars: 3,
                     scrollBeyondLastLine: false,
-                    stopRenderingLineAfter: 6500
+                    stopRenderingLineAfter: 6500,
+                    renderLineHighlight: 'all',
+                    renderLineHighlightOnlyWhenFocus: false
                 });
                 
                 editor.getModel().updateOptions({ insertSpaces: false });
